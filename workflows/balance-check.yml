@@ -1,0 +1,166 @@
+app:
+  description: Read-only Cormak OAuth connection check. No generation or credit use.
+  icon: 🧩
+  icon_background: '#D4AF37'
+  mode: workflow
+  name: Cormak Agents — Connection Check
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.3.1
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - id: 1794655000001-source-1794655000002-target
+      source: '1794655000001'
+      sourceHandle: source
+      target: '1794655000002'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+      data:
+        sourceType: start
+        targetType: tool
+        isInIteration: false
+        isInLoop: false
+    - id: 1794655000002-source-1794655000003-target
+      source: '1794655000002'
+      sourceHandle: source
+      target: '1794655000003'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+      data:
+        sourceType: tool
+        targetType: end
+        isInIteration: false
+        isInLoop: false
+    nodes:
+    - id: '1794655000001'
+      type: custom
+      data:
+        title: Start
+        type: start
+        desc: ''
+        selected: false
+        variables: []
+      height: 100
+      width: 244
+      position:
+        x: 30
+        y: 220
+      positionAbsolute:
+        x: 30
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+    - id: '1794655000002'
+      type: custom
+      data:
+        title: Get Credit Balance
+        type: tool
+        desc: ''
+        selected: false
+        provider_id: cormak/cormak_agents/cormak_agents
+        provider_name: cormak_agents
+        provider_type: builtin
+        is_team_authorization: false
+        tool_name: account
+        tool_label: Get Credit Balance
+        tool_description: Read the Cormak plan and available credits. Does not generate
+          content.
+        tool_node_version: '2'
+        tool_parameters: {}
+        tool_configurations: {}
+        paramSchemas: []
+        params: {}
+        output_schema:
+          type: object
+          properties:
+            result:
+              type: object
+      height: 100
+      width: 244
+      position:
+        x: 350
+        y: 220
+      positionAbsolute:
+        x: 350
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+    - id: '1794655000003'
+      type: custom
+      data:
+        title: Balance Result
+        type: end
+        desc: ''
+        selected: false
+        outputs:
+        - variable: balance
+          value_type: object
+          value_selector:
+          - '1794655000002'
+          - result
+      height: 100
+      width: 244
+      position:
+        x: 670
+        y: 220
+      positionAbsolute:
+        x: 670
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.8

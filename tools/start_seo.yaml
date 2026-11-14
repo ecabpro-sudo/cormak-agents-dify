@@ -1,0 +1,136 @@
+identity:
+  name: start_seo
+  author: cormak
+  label:
+    en_US: Generate SEO Article
+description:
+  human:
+    en_US: Queue one SEO article draft at the confirmed Cormak credit quote.
+  llm: Queue one SEO article draft at the confirmed Cormak credit quote.
+parameters:
+- name: topic
+  type: string
+  required: true
+  label:
+    en_US: Topic
+  human_description:
+    en_US: Topic for the draft (3 to 200 characters).
+  llm_description: Topic for the draft (3 to 200 characters).
+  form: llm
+- name: words
+  type: select
+  required: true
+  label:
+    en_US: Article length
+  human_description:
+    en_US: Choose article length.
+  llm_description: Choose article length.
+  form: llm
+  default: '1000'
+  options:
+  - value: '500'
+    label:
+      en_US: '500'
+  - value: '1000'
+    label:
+      en_US: '1000'
+  - value: '1500'
+    label:
+      en_US: '1500'
+  - value: '2000'
+    label:
+      en_US: '2000'
+  - value: '3000'
+    label:
+      en_US: '3000'
+- name: locale
+  type: string
+  required: true
+  label:
+    en_US: Output language
+  human_description:
+    en_US: Language code such as en or ru.
+  llm_description: Language code such as en or ru.
+  form: llm
+  default: en
+- name: keywords
+  type: string
+  required: false
+  label:
+    en_US: Keywords
+  human_description:
+    en_US: Optional comma-separated keywords.
+  llm_description: Optional comma-separated keywords.
+  form: llm
+  default: ''
+- name: audience
+  type: string
+  required: false
+  label:
+    en_US: Audience
+  human_description:
+    en_US: Optional description of the intended audience.
+  llm_description: Optional description of the intended audience.
+  form: llm
+  default: ''
+- name: style
+  type: select
+  required: true
+  label:
+    en_US: Editorial style
+  human_description:
+    en_US: Choose editorial style.
+  llm_description: Choose editorial style.
+  form: llm
+  default: informational
+  options:
+  - value: informational
+    label:
+      en_US: informational
+  - value: expert
+    label:
+      en_US: expert
+  - value: sales
+    label:
+      en_US: sales
+  - value: conversational
+    label:
+      en_US: conversational
+- name: expected_credits
+  type: number
+  required: true
+  label:
+    en_US: Expected credits
+  human_description:
+    en_US: Maximum credits from the Quote SEO Article result.
+  llm_description: Maximum credits from the Quote SEO Article result.
+  form: llm
+- name: request_id
+  type: string
+  required: true
+  label:
+    en_US: Request ID
+  human_description:
+    en_US: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval, a
+      timeout or a retry.
+  llm_description: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval,
+    a timeout or a retry.
+  form: llm
+- name: allow_paid_run
+  type: boolean
+  required: true
+  label:
+    en_US: Allow credit use
+  human_description:
+    en_US: Enable only for workflows authorized to spend Cormak credits.
+  llm_description: Enable only for workflows authorized to spend Cormak credits.
+  form: form
+  default: false
+output_schema:
+  type: object
+  properties:
+    result:
+      type: object
+extra:
+  python:
+    source: tools/start_seo.py

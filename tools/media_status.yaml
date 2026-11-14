@@ -1,0 +1,29 @@
+identity:
+  name: media_status
+  author: cormak
+  label:
+    en_US: Get Image Status
+description:
+  human:
+    en_US: Read a media operation by original request ID. Returns a private media URL when available.
+  llm: Read a media operation by original request ID. Returns a private media URL when available.
+parameters:
+- name: request_id
+  type: string
+  required: true
+  label:
+    en_US: Request ID
+  human_description:
+    en_US: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval, a
+      timeout or a retry.
+  llm_description: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval,
+    a timeout or a retry.
+  form: llm
+output_schema:
+  type: object
+  properties:
+    result:
+      type: object
+extra:
+  python:
+    source: tools/media_status.py

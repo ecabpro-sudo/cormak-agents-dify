@@ -1,0 +1,100 @@
+identity:
+  name: start_image
+  author: cormak
+  label:
+    en_US: Generate Image
+description:
+  human:
+    en_US: Request a Nano Banana 2 image. Uses two AI credits after approval in Cormak.
+  llm: Request a Nano Banana 2 image. Uses two AI credits after approval in Cormak.
+parameters:
+- name: prompt
+  type: string
+  required: true
+  label:
+    en_US: Prompt
+  human_description:
+    en_US: Describe the media to generate (up to 2,000 characters).
+  llm_description: Describe the media to generate (up to 2,000 characters).
+  form: llm
+- name: aspect_ratio
+  type: select
+  required: true
+  label:
+    en_US: Aspect ratio
+  human_description:
+    en_US: Choose aspect ratio.
+  llm_description: Choose aspect ratio.
+  form: llm
+  default: '1:1'
+  options:
+  - value: '1:1'
+    label:
+      en_US: '1:1'
+  - value: '16:9'
+    label:
+      en_US: '16:9'
+  - value: '9:16'
+    label:
+      en_US: '9:16'
+  - value: '4:3'
+    label:
+      en_US: '4:3'
+  - value: '3:4'
+    label:
+      en_US: '3:4'
+- name: style
+  type: select
+  required: true
+  label:
+    en_US: Image style
+  human_description:
+    en_US: Choose image style.
+  llm_description: Choose image style.
+  form: llm
+  default: realistic
+  options:
+  - value: realistic
+    label:
+      en_US: realistic
+  - value: gold
+    label:
+      en_US: gold
+  - value: neon
+    label:
+      en_US: neon
+  - value: vector
+    label:
+      en_US: vector
+  - value: logo
+    label:
+      en_US: logo
+- name: request_id
+  type: string
+  required: true
+  label:
+    en_US: Request ID
+  human_description:
+    en_US: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval, a
+      timeout or a retry.
+  llm_description: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval,
+    a timeout or a retry.
+  form: llm
+- name: allow_paid_run
+  type: boolean
+  required: true
+  label:
+    en_US: Allow credit use
+  human_description:
+    en_US: Enable only for workflows authorized to spend Cormak credits.
+  llm_description: Enable only for workflows authorized to spend Cormak credits.
+  form: form
+  default: false
+output_schema:
+  type: object
+  properties:
+    result:
+      type: object
+extra:
+  python:
+    source: tools/start_image.py

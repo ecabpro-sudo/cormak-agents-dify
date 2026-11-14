@@ -1,0 +1,18 @@
+identity:
+  name: list_agents
+  author: cormak
+  label:
+    en_US: List Cormak Agents
+description:
+  human:
+    en_US: List supported active Cormak agents, their IDs and available draft tasks.
+  llm: List supported active Cormak agents, their IDs and available draft tasks.
+parameters: []
+output_schema:
+  type: object
+  properties:
+    result:
+      type: object
+extra:
+  python:
+    source: tools/list_agents.py

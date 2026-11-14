@@ -1,0 +1,96 @@
+identity:
+  name: product_copy
+  author: cormak
+  label:
+    en_US: Write Product Copy
+description:
+  human:
+    en_US: Generate a factual product listing and SEO metadata. Uses one AI credit.
+  llm: Generate a factual product listing and SEO metadata. Uses one AI credit.
+parameters:
+- name: product_name
+  type: string
+  required: true
+  label:
+    en_US: Product name
+  human_description:
+    en_US: Name of the product (2 to 200 characters).
+  llm_description: Name of the product (2 to 200 characters).
+  form: llm
+- name: product_facts
+  type: string
+  required: true
+  label:
+    en_US: Product facts
+  human_description:
+    en_US: Verified details for the listing (up to 6,000 characters).
+  llm_description: Verified details for the listing (up to 6,000 characters).
+  form: llm
+- name: tone
+  type: select
+  required: true
+  label:
+    en_US: Writing tone
+  human_description:
+    en_US: Choose writing tone.
+  llm_description: Choose writing tone.
+  form: llm
+  default: neutral
+  options:
+  - value: neutral
+    label:
+      en_US: neutral
+  - value: friendly
+    label:
+      en_US: friendly
+  - value: premium
+    label:
+      en_US: premium
+  - value: expert
+    label:
+      en_US: expert
+  - value: playful
+    label:
+      en_US: playful
+  - value: minimal
+    label:
+      en_US: minimal
+- name: locale
+  type: string
+  required: true
+  label:
+    en_US: Output language
+  human_description:
+    en_US: Language code such as en or ru.
+  llm_description: Language code such as en or ru.
+  form: llm
+  default: en
+- name: request_id
+  type: string
+  required: true
+  label:
+    en_US: Request ID
+  human_description:
+    en_US: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval, a
+      timeout or a retry.
+  llm_description: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval,
+    a timeout or a retry.
+  form: llm
+- name: allow_paid_run
+  type: boolean
+  required: true
+  label:
+    en_US: Allow credit use
+  human_description:
+    en_US: Enable only for workflows authorized to spend Cormak credits.
+  llm_description: Enable only for workflows authorized to spend Cormak credits.
+  form: form
+  default: false
+output_schema:
+  type: object
+  properties:
+    result:
+      type: object
+extra:
+  python:
+    source: tools/product_copy.py

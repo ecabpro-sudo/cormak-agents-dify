@@ -1,0 +1,18 @@
+identity:
+  name: account
+  author: cormak
+  label:
+    en_US: Get Credit Balance
+description:
+  human:
+    en_US: Read the Cormak plan and available AI and video credits.
+  llm: Read the Cormak plan and available AI and video credits.
+parameters: []
+output_schema:
+  type: object
+  properties:
+    result:
+      type: object
+extra:
+  python:
+    source: tools/account.py

@@ -1,0 +1,27 @@
+identity:
+  name: seo_status
+  author: cormak
+  label:
+    en_US: Get SEO Article
+description:
+  human:
+    en_US: Check one SEO job and return the article content when it is complete.
+  llm: Check one SEO job and return the article content when it is complete.
+parameters:
+- name: job_id
+  type: string
+  required: true
+  label:
+    en_US: Job ID
+  human_description:
+    en_US: Cormak job UUID returned by Generate SEO Article.
+  llm_description: Cormak job UUID returned by Generate SEO Article.
+  form: llm
+output_schema:
+  type: object
+  properties:
+    result:
+      type: object
+extra:
+  python:
+    source: tools/seo_status.py

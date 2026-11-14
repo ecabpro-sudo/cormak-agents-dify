@@ -1,0 +1,57 @@
+identity:
+  author: cormak
+  name: cormak_agents
+  label:
+    en_US: Cormak Agents
+  description:
+    en_US: Run Cormak AI agents and generate images, product copy and SEO articles in Dify workflows.
+  icon: icon.svg
+  tags:
+  - productivity
+  - image
+  - business
+oauth_schema:
+  client_schema:
+  - name: client_id
+    type: text-input
+    required: true
+    label:
+      en_US: Cormak OAuth client ID
+    help:
+      en_US: Register the exact Dify callback using configure_oauth.py from the plugin source.
+    url: https://cormak.app/developers
+  - name: pkce_secret
+    type: secret-input
+    required: true
+    label:
+      en_US: Workspace PKCE secret
+    help:
+      en_US: The setup helper generates a random 64-character secret. Keep it private in this workspace.
+    url: https://cormak.app/developers
+  credentials_schema:
+  - name: access_token
+    type: secret-input
+    label:
+      en_US: Access token
+  - name: refresh_token
+    type: secret-input
+    label:
+      en_US: Refresh token
+  - name: client_id
+    type: text-input
+    label:
+      en_US: OAuth client ID
+tools:
+- tools/account.yaml
+- tools/list_agents.yaml
+- tools/start_agent.yaml
+- tools/agent_status.yaml
+- tools/start_image.yaml
+- tools/media_status.yaml
+- tools/product_copy.yaml
+- tools/seo_quote.yaml
+- tools/start_seo.yaml
+- tools/seo_status.yaml
+extra:
+  python:
+    source: provider/cormak_agents.py

@@ -1,0 +1,92 @@
+identity:
+  name: start_agent
+  author: cormak
+  label:
+    en_US: Run Cormak Agent
+description:
+  human:
+    en_US: Request a private agent draft. Uses one AI credit after the owner approves in Cormak.
+  llm: Request a private agent draft. Uses one AI credit after the owner approves in Cormak.
+parameters:
+- name: agent_id
+  type: string
+  required: true
+  label:
+    en_US: Agent ID
+  human_description:
+    en_US: UUID from List Cormak Agents.
+  llm_description: UUID from List Cormak Agents.
+  form: llm
+- name: kind
+  type: string
+  required: true
+  label:
+    en_US: Task kind
+  human_description:
+    en_US: Choose a task kind returned for this agent by List Cormak Agents.
+  llm_description: Choose a task kind returned for this agent by List Cormak Agents.
+  form: llm
+- name: brief
+  type: string
+  required: true
+  label:
+    en_US: Brief
+  human_description:
+    en_US: Task brief and facts. Use non-sensitive content only (up to 6,000 characters).
+  llm_description: Task brief and facts. Use non-sensitive content only (up to 6,000 characters).
+  form: llm
+- name: locale
+  type: select
+  required: true
+  label:
+    en_US: Output language
+  human_description:
+    en_US: Choose output language.
+  llm_description: Choose output language.
+  form: llm
+  default: en
+  options:
+  - value: en
+    label:
+      en_US: en
+  - value: ru
+    label:
+      en_US: ru
+  - value: de
+    label:
+      en_US: de
+  - value: es
+    label:
+      en_US: es
+  - value: ko
+    label:
+      en_US: ko
+- name: request_id
+  type: string
+  required: true
+  label:
+    en_US: Request ID
+  human_description:
+    en_US: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval, a
+      timeout or a retry.
+  llm_description: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval,
+    a timeout or a retry.
+  form: llm
+- name: allow_paid_run
+  type: boolean
+  required: true
+  label:
+    en_US: Allow credit use
+  human_description:
+    en_US: Enable only for workflows authorized to spend Cormak credits.
+  llm_description: Enable only for workflows authorized to spend Cormak credits.
+  form: form
+  default: false
+output_schema:
+  type: object
+  properties:
+    result:
+      type: object
+extra:
+  python:
+    source: tools/start_agent.py

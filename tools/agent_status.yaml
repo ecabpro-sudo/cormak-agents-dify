@@ -1,0 +1,29 @@
+identity:
+  name: agent_status
+  author: cormak
+  label:
+    en_US: Get Agent Run Status
+description:
+  human:
+    en_US: Read the operation status and private agent draft using its original request ID.
+  llm: Read the operation status and private agent draft using its original request ID.
+parameters:
+- name: request_id
+  type: string
+  required: true
+  label:
+    en_US: Request ID
+  human_description:
+    en_US: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval, a
+      timeout or a retry.
+  llm_description: Stable UUID assigned by the workflow. Reuse identical inputs and this ID after approval,
+    a timeout or a retry.
+  form: llm
+output_schema:
+  type: object
+  properties:
+    result:
+      type: object
+extra:
+  python:
+    source: tools/agent_status.py

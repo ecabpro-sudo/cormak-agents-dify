@@ -1,0 +1,44 @@
+identity:
+  name: seo_quote
+  author: cormak
+  label:
+    en_US: Quote SEO Article
+description:
+  human:
+    en_US: Get the current maximum cost of one SEO article. Does not generate content.
+  llm: Get the current maximum cost of one SEO article. Does not generate content.
+parameters:
+- name: words
+  type: select
+  required: true
+  label:
+    en_US: Article length
+  human_description:
+    en_US: Choose article length.
+  llm_description: Choose article length.
+  form: llm
+  default: '1000'
+  options:
+  - value: '500'
+    label:
+      en_US: '500'
+  - value: '1000'
+    label:
+      en_US: '1000'
+  - value: '1500'
+    label:
+      en_US: '1500'
+  - value: '2000'
+    label:
+      en_US: '2000'
+  - value: '3000'
+    label:
+      en_US: '3000'
+output_schema:
+  type: object
+  properties:
+    result:
+      type: object
+extra:
+  python:
+    source: tools/seo_quote.py
