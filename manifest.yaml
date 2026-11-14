@@ -3,6 +3,10 @@ type: plugin
 author: cormak
 name: cormak_agents
 repo: https://github.com/ecabpro-sudo/cormak-agents-dify
+contact: support@cormak.app
+network:
+  domains:
+  - mcp.cormak.app
 label:
   en_US: Cormak Agents
 description:
